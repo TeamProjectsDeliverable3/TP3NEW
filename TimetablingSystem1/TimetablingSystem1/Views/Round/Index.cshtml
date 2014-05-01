@@ -1,0 +1,70 @@
+﻿@model TimetablingSystem1.Models.Round
+@using System.Web.Optimization
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>View1</h2>
+<script src="path/jquery-1.4.1.min.js" type="text/javascript"></script>  
+<script type="text/javascript">
+    $(document).ready( function () {
+
+        $("#EndDate").datepicker({ dateFormat: 'dd/mm/yy' });
+
+    });
+</script>
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Round</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SemesterID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SemesterID)
+            @Html.ValidationMessageFor(model => model.SemesterID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoundCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RoundCode)
+            @Html.ValidationMessageFor(model => model.RoundCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate, new { id = "EndDate"})
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+        
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+

@@ -1,0 +1,24 @@
+﻿@model TimetablingSystem1.Models.AddRequestModel
+@using System.Web.Optimization;
+@using System.Web.Mvc.Html;
+
+@{
+    ViewBag.Title = "AddRequest";
+}
+
+<h2>Add Request</h2>
+ @using (Html.BeginForm()) { 
+     
+
+      
+     @Html.LabelFor(model => model.modules, "Module Code:")
+      @Html.DropDownList("modules", null, "Select Module") 
+    // @Html.ValidationMessageFor(model => model.modules.)  
+          
+      @Html.ValidationSummary() 
+ 
+ } 
+
+@Html.DisplayFor(model => model.test)
+
+    

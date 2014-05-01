@@ -1,0 +1,34 @@
+﻿@model TimetablingSystem1.Models.RoomLookupModel
+@using System.Web.Optimization;
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<table>
+    <tr> 
+        <td>Park Code</td>
+        <td>Building Code</td>
+        <td>Room Name</td>
+        <td>Room Type</td>
+        <td>Seating Type</td>
+    </tr>
+ 
+@foreach (var item in Model.roomsIndex)
+{ 
+    <tr>
+        @Html.HiddenFor(modelItem => item.RoomID)
+        <td>@Html.DisplayFor(modelItem => item.BuildingCode)</td>
+        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+        <td>@Html.DisplayFor(modelItem => item.RoomType)</td>
+        <td>@Html.DisplayFor(modelItem => item.SeatingType)</td>
+        <td>@Html.ActionLink("Edit", "Edit", new { id = item.RoomID })</td>
+
+        
+      
+    </tr>
+    
+}    
+
+    </table>
+

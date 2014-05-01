@@ -1,0 +1,29 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Timetabling System</title>
+  @* @Scripts.Render("~/bundles/jqueryui") 
+    @Scripts.Render("~/bundles/jquery") *@
+    
+</head>
+<body>
+   
+    <a href="@Url.Content("~/AddRequest/")">Add Request</a> |
+    <a href="@Url.Content("~/RoomLookup/")">Room Lookup</a> |
+    <a href="@Url.Content("~/Logout/")">Logout</a>
+  
+              
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Timetabling System</p>
+        </footer>
+    </div>
+
+   
+</body>
+</html>

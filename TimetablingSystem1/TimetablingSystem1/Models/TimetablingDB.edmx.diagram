@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa7752d4e4f74c799773cd15777023f1" Name="Diagram1">
+        <EntityTypeShape EntityType="TimetablingModel.AllocatedRoom" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Building" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Department" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Facility" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Module" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.PreferenceRoom" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Request" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.RequestWeek" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.RequiredFacility" Width="1.5" PointX="10.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Room" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.RoomFacility" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Round" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimetablingModel.Semester" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="TimetablingModel.FK_AllocatedRoom_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_AllocatedRoom_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_Room_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_Module_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_RequiredFacility_Facility" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_RoomFacility_Facility" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_Request_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_PreferenceRoom_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_PreferenceRoom_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_Request_Round" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_RequestWeek_Request" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_RequiredFacility_Request2" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_RoomFacility_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="TimetablingModel.FK_Round_Semester" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
