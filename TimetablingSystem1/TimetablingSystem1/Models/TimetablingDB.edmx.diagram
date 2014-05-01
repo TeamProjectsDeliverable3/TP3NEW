@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa7752d4e4f74c799773cd15777023f1" Name="Diagram1">
-        <EntityTypeShape EntityType="TimetablingModel.AllocatedRoom" Width="1.5" PointX="7.5" PointY="8.625" />
+      <Diagram DiagramId="fa7752d4e4f74c799773cd15777023f1" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="TimetablingModel.AllocatedRoom" Width="1.5" PointX="7.5" PointY="2.625" />
         <EntityTypeShape EntityType="TimetablingModel.Building" Width="1.5" PointX="3" PointY="10.75" />
-        <EntityTypeShape EntityType="TimetablingModel.Department" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="TimetablingModel.Department" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="TimetablingModel.Facility" Width="1.5" PointX="5.25" PointY="0.75" />
-        <EntityTypeShape EntityType="TimetablingModel.Module" Width="1.5" PointX="3" PointY="2.625" />
-        <EntityTypeShape EntityType="TimetablingModel.PreferenceRoom" Width="1.5" PointX="7.5" PointY="2.625" />
+        <EntityTypeShape EntityType="TimetablingModel.Module" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="TimetablingModel.PreferenceRoom" Width="1.5" PointX="7.5" PointY="8.625" />
         <EntityTypeShape EntityType="TimetablingModel.Request" Width="1.5" PointX="5.25" PointY="4.25" />
         <EntityTypeShape EntityType="TimetablingModel.RequestWeek" Width="1.5" PointX="7.5" PointY="14" />
         <EntityTypeShape EntityType="TimetablingModel.RequiredFacility" Width="1.5" PointX="7.5" PointY="5.625" />
         <EntityTypeShape EntityType="TimetablingModel.Room" Width="1.5" PointX="5.25" PointY="10.125" />
         <EntityTypeShape EntityType="TimetablingModel.RoomFacility" Width="1.5" PointX="10.5" PointY="6" />
-        <EntityTypeShape EntityType="TimetablingModel.Round" Width="1.5" PointX="3" PointY="5.5" />
-        <EntityTypeShape EntityType="TimetablingModel.Semester" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="TimetablingModel.Round" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="TimetablingModel.Semester" Width="1.5" PointX="0.75" PointY="2.625" />
         <AssociationConnector Association="TimetablingModel.FK_AllocatedRoom_Request" />
         <AssociationConnector Association="TimetablingModel.FK_AllocatedRoom_Room" />
         <AssociationConnector Association="TimetablingModel.FK_Room_Building" />

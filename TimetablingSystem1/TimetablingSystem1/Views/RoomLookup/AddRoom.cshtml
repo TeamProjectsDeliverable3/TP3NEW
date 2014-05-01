@@ -1,0 +1,68 @@
+﻿@model TimetablingSystem1.Models.Room
+
+@{
+    ViewBag.Title = "AddRoom";
+}
+
+<h2>AddRoom</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Room</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuildingCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BuildingCode)
+            @Html.ValidationMessageFor(model => model.BuildingCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoomType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RoomType)
+            @Html.ValidationMessageFor(model => model.RoomType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SeatingType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SeatingType)
+            @Html.ValidationMessageFor(model => model.SeatingType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Capacity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Capacity)
+            @Html.ValidationMessageFor(model => model.Capacity)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+} *@

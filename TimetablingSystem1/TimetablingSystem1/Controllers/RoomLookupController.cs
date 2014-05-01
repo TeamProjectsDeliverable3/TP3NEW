@@ -122,5 +122,28 @@ namespace TimetablingSystem1.Controllers
             return View(rooms);
         }
 
+        public ActionResult AddBuilding()
+        {
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult AddBuilding(Building buildings) {
+
+            Room rooms = new Room();
+            if (ModelState.IsValid)
+            {
+
+               
+                //db.Entry(buildings).State = EntityState.Added;
+                //db.SaveChanges();
+                //return View("Index");
+            }
+
+            return View("Edit");
+        }
+
     }
 }

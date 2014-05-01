@@ -127,6 +127,11 @@
           <Property Name="IsActive" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6013: The table/view 'team02.team02.Table_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Table_1">
+          <Property Name="test" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
 warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="TestLogin">
           <Property Name="Username" Type="nchar" MaxLength="10" />
@@ -763,7 +768,7 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
