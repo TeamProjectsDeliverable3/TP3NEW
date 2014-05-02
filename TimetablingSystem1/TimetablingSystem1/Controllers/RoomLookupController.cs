@@ -132,17 +132,17 @@ namespace TimetablingSystem1.Controllers
         [HttpPost]
         public ActionResult AddBuilding(Building buildings) {
 
-            Room rooms = new Room();
+            
             if (ModelState.IsValid)
             {
 
                
-                //db.Entry(buildings).State = EntityState.Added;
-                //db.SaveChanges();
-                //return View("Index");
+                db.Entry(buildings).State = EntityState.Added;
+                db.SaveChanges();
+                return View("AddRequest");
             }
 
-            return View("Edit");
+            return View("AddRequest");
         }
 
     }
