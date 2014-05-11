@@ -16,7 +16,7 @@ namespace TimetablingSystem1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "AddRequest", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "ViewRequest", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

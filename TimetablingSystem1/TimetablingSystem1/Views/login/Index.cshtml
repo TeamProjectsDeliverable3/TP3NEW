@@ -1,4 +1,4 @@
-﻿@model TimetablingSystem1.Models.LoginModel 
+﻿@model TimetablingSystem1.Models.loginModel 
 @using System.Web.Optimization;
 
 
@@ -36,6 +36,7 @@
      
         @Html.LabelFor(model => model.Password, "Password: ")
         @Html.PasswordFor(model => model.Password)
+        <p>@TempData["notice"]</p>
         
      </div>
         <br />
@@ -45,12 +46,8 @@
         @Html.ValidationSummary()
 
         
-        
-        
-        
-        
-
-        
     }
+
+    <p>@ViewBag.incorrectPassword</p>
 
 

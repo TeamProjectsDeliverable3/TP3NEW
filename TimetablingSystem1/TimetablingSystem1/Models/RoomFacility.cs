@@ -18,7 +18,7 @@ namespace TimetablingSystem1.Models
         public int RoomID { get; set; }
         public int FacilityID { get; set; }
     
-        public virtual Facility Facility { get; set; }
-        public virtual Room Room { get; set; }
+        public virtual Facility Facility { internal get; set; }
+        public virtual Room Room { internal get; set; }
     }
 }

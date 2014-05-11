@@ -17,8 +17,6 @@ namespace TimetablingSystem1.Models
         public Room()
         {
             this.AllocatedRooms = new HashSet<AllocatedRoom>();
-            this.PreferenceRooms = new HashSet<PreferenceRoom>();
-            this.RoomFacilities = new HashSet<RoomFacility>();
         }
     
         public int RoomID { get; set; }
@@ -29,8 +27,6 @@ namespace TimetablingSystem1.Models
         public int Capacity { get; set; }
     
         public virtual ICollection<AllocatedRoom> AllocatedRooms { get; set; }
-        public virtual Building Building { get; set; }
-        public virtual ICollection<PreferenceRoom> PreferenceRooms { get; set; }
-        public virtual ICollection<RoomFacility> RoomFacilities { get; set; }
+        public virtual Building Building { internal get; set; }
     }
 }

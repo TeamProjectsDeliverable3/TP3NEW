@@ -14,18 +14,12 @@ namespace TimetablingSystem1.Models
     
     public partial class Round
     {
-        public Round()
-        {
-            this.Requests = new HashSet<Request>();
-        }
-    
         public int RoundID { get; set; }
         public int SemesterID { get; set; }
         public string RoundCode { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
     
-        public virtual ICollection<Request> Requests { get; set; }
-        public virtual Semester Semester { get; set; }
+        public virtual Semester Semester { internal get; set; }
     }
 }

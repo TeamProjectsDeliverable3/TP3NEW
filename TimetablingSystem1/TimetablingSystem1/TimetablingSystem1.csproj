@@ -134,11 +134,15 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\AddRequestController.cs" />
+    <Compile Include="Controllers\api\RoomAPIController.cs" />
+    <Compile Include="Controllers\api\SemesterAPIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\logoutController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\RoomLookupController.cs" />
     <Compile Include="Controllers\RoundController.cs" />
+    <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\ViewRequestController.cs" />
     <Compile Include="DataAccess\DataAccessLayer.cs" />
     <Compile Include="DataAccess\RoomContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -152,19 +156,29 @@
     <Compile Include="Models\Building.cs">
       <DependentUpon>TimetablingDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Day.cs">
+      <DependentUpon>TimetablingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Department.cs">
       <DependentUpon>TimetablingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Facility.cs">
       <DependentUpon>TimetablingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Length.cs">
+      <DependentUpon>TimetablingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\loginModel.cs" />
     <Compile Include="Models\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Module.cs">
+      <DependentUpon>TimetablingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModuleModel.cs" />
+    <Compile Include="Models\Period.cs">
       <DependentUpon>TimetablingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PreferenceRoom.cs">
@@ -208,6 +222,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TimetablingDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -361,7 +376,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -374,8 +391,18 @@
     <Content Include="Views\RoomLookup\Index.cshtml" />
     <Content Include="Views\RoomLookup\Edit.cshtml" />
     <Content Include="Views\Round\Index.cshtml" />
-    <Content Include="Views\RoomLookup\AddRoom.cshtml" />
-    <Content Include="Views\RoomLookup\AddBuilding.cshtml" />
+    <Content Include="Views\AddRequest\Index.cshtml" />
+    <Content Include="Views\ViewRequest\Index.cshtml" />
+    <Content Include="Views\RoomLookup\Create.cshtml" />
+    <Content Include="Views\RoomLookup\CreateBuilding.cshtml" />
+    <Content Include="Views\RoomLookup\Delete.cshtml" />
+    <Content Include="Views\RoomLookup\DeleteBuilding.cshtml" />
+    <Content Include="Views\RoomLookup\ViewBuildings.cshtml" />
+    <Content Include="Views\RoomLookup\ViewRoom.cshtml" />
+    <Content Include="Views\Module\Create.cshtml" />
+    <Content Include="Views\Module\Delete.cshtml" />
+    <Content Include="Views\Module\Edit.cshtml" />
+    <Content Include="Views\Module\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\TimetablingSystem1.dll.config" />
@@ -393,9 +420,6 @@
     <Content Include="Views\Shared\_AnonLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\AddRequest\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\css\" />

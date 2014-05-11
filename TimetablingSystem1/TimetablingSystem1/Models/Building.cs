@@ -14,15 +14,8 @@ namespace TimetablingSystem1.Models
     
     public partial class Building
     {
-        public Building()
-        {
-            this.Rooms = new HashSet<Room>();
-        }
-    
         public string BuildingCode { get; set; }
         public string Name { get; set; }
         public string ParkCode { get; set; }
-    
-        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

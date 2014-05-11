@@ -38,5 +38,8 @@ namespace TimetablingSystem1.Models
         public virtual DbSet<RoomFacility> RoomFacilities { get; set; }
         public virtual DbSet<Round> Rounds { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
+        public virtual DbSet<Day> Days { get; set; }
+        public virtual DbSet<Length> Lengths { get; set; }
+        public virtual DbSet<Period> Periods { get; set; }
     }
 }

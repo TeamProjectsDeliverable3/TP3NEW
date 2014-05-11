@@ -16,8 +16,8 @@ namespace TimetablingSystem1.Models
     {
         public int RequestWeekID { get; set; }
         public int RequestID { get; set; }
-        public byte Week { get; set; }
+        public int Week { get; set; }
     
-        public virtual Request Request { get; set; }
+        public virtual Request Request { internal get; set; }
     }
 }

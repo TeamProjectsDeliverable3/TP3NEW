@@ -14,16 +14,10 @@ namespace TimetablingSystem1.Models
     
     public partial class Module
     {
-        public Module()
-        {
-            this.Requests = new HashSet<Request>();
-        }
-    
         public string ModuleCode { get; set; }
         public string Title { get; set; }
         public string DepartmentCode { get; set; }
     
-        public virtual Department Department { get; set; }
-        public virtual ICollection<Request> Requests { get; set; }
+        public virtual Department Department { internal get; set; }
     }
 }

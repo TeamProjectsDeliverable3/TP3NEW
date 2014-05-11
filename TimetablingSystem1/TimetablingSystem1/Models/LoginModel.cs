@@ -6,13 +6,13 @@ using System.Text;
 
 namespace TimetablingSystem1.Models
 {
-    public class LoginModel
+    public class loginModel
     {
     
        // [Required]
         public string DepartmentCode { get; set; }
 
-         [Required]
+        [Required]
         public string Password { get; set; }
 
         public string DepartmentName { get; set; }

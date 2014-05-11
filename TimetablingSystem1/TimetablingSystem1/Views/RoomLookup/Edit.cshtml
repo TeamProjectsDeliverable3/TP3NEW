@@ -5,16 +5,45 @@
 @{
     ViewBag.Title = "Edit";
 }
+<script type="text/javascript">
+
+    var noOfFacilities = @ViewBag.noOfFacs
+
+        function checkFacs() {
+
+            for (var i = 1; i <= noOfFacilities; i++) {
+
+                if (document.getElementById(i).checked) {
+
+                    document.getElementById(i).value = "1"
+
+                }
+
+                else {
+
+                    document.getElementById(i).value = "0"
+
+                }
 
 
-@using (Html.BeginForm())
-{
+            };
+
+
+        };
+
+
+</script>
+
+
+
+@using (Html.BeginForm()) 
+{ 
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.roomsEdit.RoomID)
-    <fieldset>
-        <legend>Room</legend>
 
-        @Html.HiddenFor(model => model.roomsEdit.RoomID)
+        <h1>Room</h1>
+
+       
 
         <div class="editor-label">
             @Html.LabelFor(model => model.roomsEdit.Name)
@@ -93,12 +122,20 @@
 
        <div>
            @foreach (var item in Model.facilityEdit) {
-               
-           
+
+               if (Model.checkedFacs.Contains(item.FacilityID)) { 
           
-          @Html.Label(item.Name)
-              // model.roomFacs = item.FacilityID;
-          @Html.CheckBoxFor(model => model.facilityIsChecked, new { id = item.FacilityID })
+                @item.Name
+            <input type="checkbox" checked class="checkBoxFac" id="@item.FacilityID" name="fac-@item.FacilityID" value="" onclick="checkFacs();" />
+               
+                }
+               else { 
+               
+                @item.Name
+            <input type="checkbox"  class="checkBoxFac" id="@item.FacilityID" name="fac-@item.FacilityID" value="" onclick="checkFacs();" />
+               
+               
+               }
                
     
            }
@@ -115,7 +152,7 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-    </fieldset>
+
 }
 
 <div>

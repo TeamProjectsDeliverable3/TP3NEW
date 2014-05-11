@@ -1,0 +1,122 @@
+﻿@model TimetablingSystem1.Models.RoomLookupModel
+@using System.Web.Optimization;
+@using System.Web.Mvc.Html;
+
+@{
+    ViewBag.Title = "Create";
+}
+<script type="text/javascript">
+
+    var noOfFacilities = @ViewBag.noOfFacs
+
+        function checkFacs() {
+
+            for (var i = 1; i <= noOfFacilities; i++) {
+
+                if (document.getElementById(i).checked) {
+
+                    document.getElementById(i).value = "1"
+
+                }
+
+                else {
+
+                    document.getElementById(i).value = "0"
+
+                }
+
+
+            };
+
+
+        };
+
+
+</script>
+<h2>Create Room</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Room</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomsCreate.BuildingCode)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.roomsCreate.BuildingCode, new SelectList(ViewBag.EditDepartments, "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.roomsCreate.BuildingCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomsCreate.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.roomsCreate.Name)
+            @Html.ValidationMessageFor(model => model.roomsCreate.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomsCreate.RoomType)
+        </div>
+        <div class="editor-field">
+            <span>Tiered</span>
+            @Html.RadioButtonFor(model => model.roomsCreate.SeatingType, "T", new { @checked = "checked" })
+
+            <span>Flat</span>
+            @Html.RadioButtonFor(model => model.roomsCreate.SeatingType, "F")
+            @Html.ValidationMessageFor(model => model.roomsCreate.RoomType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomsCreate.SeatingType)
+        </div>
+        <div class="editor-field">
+            <span>Lecture</span>
+            @Html.RadioButtonFor(model => model.roomsCreate.RoomType, "L", new { @checked = "checked" })
+
+            <span>Seminar</span>
+            @Html.RadioButtonFor(model => model.roomsCreate.RoomType, "S")
+            @Html.ValidationMessageFor(model => model.roomsCreate.RoomType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.roomsCreate.Capacity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.roomsCreate.Capacity)
+            @Html.ValidationMessageFor(model => model.roomsCreate.Capacity)
+        </div>
+
+        <div>
+            @foreach (var item in Model.facilityEdit)
+            {
+
+               
+                {
+
+                    @item.Name
+                    <input type="checkbox" class="checkBoxFac" id="@item.FacilityID" name="fac-@item.FacilityID" value="" onclick="checkFacs();" />
+
+                }
+               
+
+
+            }
+        </div>
+
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

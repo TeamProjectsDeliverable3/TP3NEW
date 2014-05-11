@@ -1,0 +1,68 @@
+﻿@model TimetablingSystem1.Models.RoomLookupModel
+@using System.Web.Optimization;
+@using System.Web.Mvc.Html;
+
+@if (TempData["notice"] != null)
+{
+    <p>@TempData["notice"]</p>
+}
+
+@{
+    ViewBag.Title = "CreateBuilding";
+}
+
+<h2>CreateBuilding</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Building</legend>
+
+        @if (TempData["notice"] != null)
+        {
+            <p>@TempData["notice"]</p>
+        }
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.buildingCreate.BuildingCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.buildingCreate.BuildingCode)
+            @Html.ValidationMessageFor(model => model.buildingCreate.BuildingCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.buildingCreate.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.buildingCreate.Name)
+            @Html.ValidationMessageFor(model => model.buildingCreate.Name)
+            @Html.ValidationMessage("BCError")
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.buildingCreate.ParkCode)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.buildingCreate.ParkCode, new SelectList(ViewBag.parkCodes, "Value", "Text"))
+            @Html.ValidationMessageFor(model => model.buildingCreate.ParkCode)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+*@

@@ -14,16 +14,9 @@ namespace TimetablingSystem1.Models
     
     public partial class Department
     {
-        public Department()
-        {
-            this.Modules = new HashSet<Module>();
-        }
-    
         public string DepartmentCode { get; set; }
         public string Name { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
-    
-        public virtual ICollection<Module> Modules { get; set; }
     }
 }

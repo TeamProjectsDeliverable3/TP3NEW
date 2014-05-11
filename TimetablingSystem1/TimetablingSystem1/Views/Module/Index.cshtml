@@ -1,0 +1,31 @@
+﻿@model TimetablingSystem1.Models.ModuleModel
+@using System.Web.Optimization;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Module</h2>
+
+<p>
+    @Html.ActionLink("Add New", "Create")
+</p>
+<table>
+    <tr>
+        <td>Module Code</td>
+        <td>Title</td>
+        <td>Department Code</td>
+    </tr>
+
+    @foreach (var item in Model.modulesIndex)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ModuleCode)</td>
+            <td>@Html.DisplayFor(modelItem => item.Title)</td>
+            <td>@Html.DisplayFor(modelItem => item.DepartmentCode)</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = item.ModuleCode })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = item.ModuleCode })</td>
+        </tr>
+
+    }
+
+</table>

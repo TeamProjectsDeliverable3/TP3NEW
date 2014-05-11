@@ -1,0 +1,49 @@
+﻿@model TimetablingSystem1.Models.RoomLookupModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<fieldset>
+    <legend>Room</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.BuildingCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BuildingCode)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.RoomType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoomType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.SeatingType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SeatingType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Capacity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Capacity)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

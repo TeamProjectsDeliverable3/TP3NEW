@@ -12,7 +12,19 @@ namespace TimetablingSystem1.Models
     {
         public IEnumerable<Room> roomsIndex { get; set; }
 
+        public IEnumerable<Building> buildingsIndex { get; set; }
+
         public Room roomsEdit { get; set; }
+
+        public Room roomsDelete { get; set; }
+
+        public Room roomsCreate { get; set; }
+
+        public Building buildingCreate { get; set; }
+
+        public List<int> checkedFacs { get; set; }
+
+
 
         public IEnumerable<Facility> facilityEdit { get; set; }
 
@@ -30,23 +42,42 @@ namespace TimetablingSystem1.Models
 
         public string AllFacilities { get; set; }
 
+        public string BuildingCode { get; set; }
+        public string ParkCode { get; set; }
+        public string RoomType { get; set; }
+        public string SeatingType { get; set; }
+        public string Capacity { get; set; }
+
+
+
+
+
+
+
+
         public IEnumerable<string> Facs { get; set; }
+
+        //public IEnumerable<Room> order { get; set; }
 
         public RoomLookupModel()
         {
             TimetablingEntities db = new TimetablingEntities();
-            
 
-            
+
+
         }
 
-       
 
 
-        
 
 
-       
 
+
+
+
+
+
+
+        public Room roomsCreated { get; set; }
     }
 }

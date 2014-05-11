@@ -1,69 +1,109 @@
-﻿@model TimetablingSystem1.Models.Round
+﻿@model TimetablingSystem1.Models.RoundModel
 @using System.Web.Optimization
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>View1</h2>
-<script src="path/jquery-1.4.1.min.js" type="text/javascript"></script>  
+<h2>View Rounds</h2>
+
 <script type="text/javascript">
     $(document).ready( function () {
-
-        $("#EndDate").datepicker({ dateFormat: 'dd/mm/yy' });
-
+    
+    
     });
+     
+
+    function getSemesterData(semesterID) {
+
+        $("#dataTable").empty();
+
+        $.getJSON("@Url.Action("SemesterAPI", "api", null, Request.Url.Scheme)" + '?SemesterID=' + semesterID)
+        .done(function (data) {
+            console.log(data);
+            var tablestring = "<tr><th>Round |</th><th>Start Date |</th><th>End Date</th></tr>"
+            data.forEach(function (entry) {
+                if(entry.round == null){var round = ""}
+                if (entry.RoundCode == "P") { var round = "Priority" }
+                if (entry.RoundCode == "1") { var round = "Round 1" }
+                if (entry.RoundCode == "2") { var round = "Round 2" }
+                if (entry.RoundCode == "A") { var round = "Ad-hoc" }
+
+                var day = (entry.StartDate).substring(8, 10)
+                var month = (entry.StartDate).substring(5, 7)
+                var year = (entry.StartDate).substring(0, 4)
+                var startdate = day + "-" + month + "-" + year
+
+                var enddate;
+                if (entry.EndDate != null) {
+                    var day = (entry.EndDate).substring(8, 10)
+                    var month = (entry.EndDate).substring(5, 7)
+                    var year = (entry.EndDate).substring(0, 4)
+                    enddate = day + "-" + month + "-" + year
+                }
+                if (entry.EndDate == null) { enddate = "" }
+
+                tablestring += "<tr><td>" + round + " |</td><td>" + startdate + " |</td><td>" + enddate + "</td></tr>"
+
+
+            });
+
+            $("#dataTable").append(tablestring)
+
+        })
+        .fail(function (jqXHR, textStatus, err) {
+                console.log('Error: ' + err);
+        });
+
+    }
+
+
+
 </script>
 
+<table>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <tr>
+            <td>View Semester Round Info</td>
+        </tr>
+        <tr>
+            <td>
+                <select id="semestersSelect" onchange="getSemesterData(document.getElementById('semestersSelect').options[document.getElementById('semestersSelect').selectedIndex].value)">
+                    <option selected disabled>Please select</option>
+                    <optgroup label="Active">
+                        @{
+        foreach (var item in Model.currentRounds)
+        {
+            <option id="selectedsemester" value="@item.Value">@item.Text</option>
+        }
+                        }
+                    </optgroup>
+                    <optgroup label="Ended Semesters">
+                        @{
+        foreach (var item in Model.nonActiveSemesters)
+        {
+            <option id="selectedsemester" value="@item.Value">@item.Text</option>
+        }
+                        }
+                    </optgroup>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+                </select>
+            </td>
 
-    <fieldset>
-        <legend>Round</legend>
+        </tr>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SemesterID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SemesterID)
-            @Html.ValidationMessageFor(model => model.SemesterID)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.RoundCode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.RoundCode)
-            @Html.ValidationMessageFor(model => model.RoundCode)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.StartDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.StartDate)
-            @Html.ValidationMessageFor(model => model.StartDate)
-        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.EndDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.EndDate, new { id = "EndDate"})
-            @Html.ValidationMessageFor(model => model.EndDate)
-        </div>
-        
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
+    }
+</table>
+<table id="dataTable"></table>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
 
 
 

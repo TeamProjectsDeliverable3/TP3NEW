@@ -19,6 +19,6 @@ namespace TimetablingSystem1.Models
         public int FacilityID { get; set; }
     
         public virtual Facility Facility { get; set; }
-        public virtual Request Request { get; set; }
+        public virtual Request Request { internal get; set; }
     }
 }

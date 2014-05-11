@@ -15,7 +15,7 @@ namespace TimetablingSystem1.DataAccess
        //static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["team02database"].ConnectionString.ToString());
         static SqlConnection conn = new SqlConnection("Data Source=co-web.lboro.ac.uk;Integrated Security=False;User ID=team02;Password=s9s38vb;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
 
-        static string sha256(string password)
+        public static string sha256(string password)
         {
             SHA256Managed crypt = new SHA256Managed();
             string hash = String.Empty;
@@ -47,6 +47,8 @@ namespace TimetablingSystem1.DataAccess
                           
             
 
-        }
+        } 
+
+       
     }
 }

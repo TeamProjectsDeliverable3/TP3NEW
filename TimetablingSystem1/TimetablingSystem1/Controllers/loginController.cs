@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -18,95 +18,93 @@ namespace TimetablingSystem.Controllers
     {
         //
         // GET: /login/
-	public loginController(){
-       
-	}
-	 DataAccessLayer dal = new DataAccessLayer();
-     private TimetablingEntities db = new TimetablingEntities();
-
-     public ActionResult Index()
-        
+        public loginController()
         {
-            LoginModel lmodel = new LoginModel();
 
-            var query = from ModuleCode in db.Modules
-                        where ModuleCode.DepartmentCode == "CO"
-                        select ModuleCode;
+        }
+        DataAccessLayer dal = new DataAccessLayer();
+        private TimetablingEntities db = new TimetablingEntities();
 
-            //ViewBag.DepartmentCode = new SelectList(query, "ModuleCode", "ModuleCode");
+        [HttpGet]
+        public ActionResult Index()
+        {
+            loginModel lmodel = new loginModel();
 
-            //ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode");
-            //ViewBag.DepartmentName = new SelectList(db.Departments, "DepartmentCode", "Name");        
-            ViewBag.Password = new SelectList(db.Departments, "DepartmentCode", "PasswordHash");
-
-        
+            //ViewBag.Password = new SelectList(db.Departments, "DepartmentCode", "PasswordHash");
 
 
 
-         var displaydeps = db.Departments.Where(s => s.DepartmentCode != null).ToList();
-         
-         IEnumerable<SelectListItem> selectList = from s in displaydeps
-                                                  select new SelectListItem
-                                                  {
-                                                      Value = s.DepartmentCode,
-                                                      Text = s.DepartmentCode + " - " + s.Name
-                                                  };
-         ViewBag.DisplayDepartments = new SelectList(selectList, "Value", "Text").Distinct();
-        
+
+
+            //var displaydeps = db.Departments.Where(s => s.DepartmentCode != null).ToList();
+
+            IEnumerable<SelectListItem> selectList = from s in db.Departments
+                                                     select new SelectListItem
+                                                     {
+                                                         Value = s.DepartmentCode,
+                                                         Text = s.DepartmentCode + " - " + s.Name
+                                                     };
+            ViewBag.DisplayDepartments = new SelectList(selectList, "Value", "Text").Distinct();
 
 
 
-        
-            
-                     
+
+
+
+
             return View();
-         
+
         }
 
         [HttpPost]
-        public ActionResult Index(LoginModel model)
-
+        public ActionResult Index(loginModel model)
         {
-            /*var query = from s in db.Modules
-                        where s.DepartmentCode == "BS"
-                        select s; */
 
 
-
-           // ViewBag.DepartmentCode = new SelectList(query, "ModuleCode", "ModuleCode");
-
+            //ViewBag.Password = new SelectList(db.Departments, "DepartmentCode", "PasswordHash");
 
 
-            var displaydeps = db.Departments.Where(s => s.DepartmentCode != null).ToList();
-
-            IEnumerable<SelectListItem> selectList = from s in displaydeps
+            IEnumerable<SelectListItem> selectList = from s in db.Departments
                                                      select new SelectListItem
                                                      {
                                                          Text = s.DepartmentCode + " - " + s.Name,
                                                          Value = s.DepartmentCode
-                                                         
-                                                     };
-            ViewBag.DisplayDepartments = new SelectList(selectList, "Text" , "Value");
-            
 
-            if (ModelState.IsValid) 
+                                                     };
+            ViewBag.DisplayDepartments = new SelectList(selectList, "Text", "Value");
+
+
+
+
+            if (ModelState.IsValid)
             {
+                //string passwordHash = dal.sha256(model.Password);
+               // var departmentPassword = (from d in db.Departments where d.DepartmentCode == model.DepartmentCode select d.PasswordHash).ToString();
+                 if (DataAccessLayer.UserIsValid(model.DisplayDepartments, model.Password))
+              //  if (departmentPassword == passwordHash)
+                {
+                   
+                    FormsAuthentication.SetAuthCookie(model.DisplayDepartments, false); //set to false: cookie is destroyed when browser is closed - user will have to login in again if browser is closed
+                    return RedirectToAction("index", "AddRequest"); //page is redirected to the page 'index' which has the controller 'home'
+
+                }
+                else
+                 {
+                     
+
+                         TempData["notice"] = "Password is incorrect. Please try again.";
+                    
+
+                    
+                    return RedirectToAction("Index", "login");
+                }
+
+
                 
-                    if (DataAccessLayer.UserIsValid(model.DisplayDepartments, model.Password))
-                    {
-                        string selectedDepartment = model.DisplayDepartments;
-                        Session["department"] = selectedDepartment;
-                        FormsAuthentication.SetAuthCookie(model.DisplayDepartments, false); //set to false: cookie is destroyed when browser is closed - user will have to login in again if browser is closed
-                        return RedirectToAction("index", "AddRequest", selectedDepartment); //page is redirected to the page 'index' which has the controller 'home'
-                        
-                    }
-                    {
-                        ModelState.AddModelError("", "Invalid password");
-                    }
-                
-              
-            }  
-            return View();
+            }
+            ModelState.AddModelError("", "Invalid password");
+            ViewBag.incorrectPassword = "Invalid password";
+            return RedirectToAction("Index", "login");
         }
-	}
+    }
 }

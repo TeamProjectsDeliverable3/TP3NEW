@@ -17,13 +17,11 @@ namespace TimetablingSystem1.Models
         public Facility()
         {
             this.RequiredFacilities = new HashSet<RequiredFacility>();
-            this.RoomFacilities = new HashSet<RoomFacility>();
         }
     
         public int FacilityID { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<RequiredFacility> RequiredFacilities { get; set; }
-        public virtual ICollection<RoomFacility> RoomFacilities { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa7752d4e4f74c799773cd15777023f1" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="fa7752d4e4f74c799773cd15777023f1" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="TimetablingModel.AllocatedRoom" Width="1.5" PointX="7.5" PointY="2.625" />
         <EntityTypeShape EntityType="TimetablingModel.Building" Width="1.5" PointX="3" PointY="10.75" />
         <EntityTypeShape EntityType="TimetablingModel.Department" Width="1.5" PointX="0.75" PointY="5.625" />
@@ -18,6 +18,9 @@
         <EntityTypeShape EntityType="TimetablingModel.RoomFacility" Width="1.5" PointX="10.5" PointY="6" />
         <EntityTypeShape EntityType="TimetablingModel.Round" Width="1.5" PointX="3" PointY="2.5" />
         <EntityTypeShape EntityType="TimetablingModel.Semester" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="TimetablingModel.Day" Width="1.5" PointX="9.75" PointY="1.125" />
+        <EntityTypeShape EntityType="TimetablingModel.Length" Width="1.5" PointX="9.75" PointY="9.125" />
+        <EntityTypeShape EntityType="TimetablingModel.Period" Width="1.5" PointX="11.75" PointY="1.125" />
         <AssociationConnector Association="TimetablingModel.FK_AllocatedRoom_Request" />
         <AssociationConnector Association="TimetablingModel.FK_AllocatedRoom_Room" />
         <AssociationConnector Association="TimetablingModel.FK_Room_Building" />

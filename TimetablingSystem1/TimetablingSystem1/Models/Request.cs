@@ -14,14 +14,6 @@ namespace TimetablingSystem1.Models
     
     public partial class Request
     {
-        public Request()
-        {
-            this.AllocatedRooms = new HashSet<AllocatedRoom>();
-            this.PreferenceRooms = new HashSet<PreferenceRoom>();
-            this.RequestWeeks = new HashSet<RequestWeek>();
-            this.RequiredFacilities = new HashSet<RequiredFacility>();
-        }
-    
         public int RequestID { get; set; }
         public int RoundID { get; set; }
         public string ModuleCode { get; set; }
@@ -37,11 +29,7 @@ namespace TimetablingSystem1.Models
         public byte Priority { get; set; }
         public string Status { get; set; }
     
-        public virtual ICollection<AllocatedRoom> AllocatedRooms { get; set; }
-        public virtual Module Module { get; set; }
-        public virtual ICollection<PreferenceRoom> PreferenceRooms { get; set; }
-        public virtual Round Round { get; set; }
-        public virtual ICollection<RequestWeek> RequestWeeks { get; set; }
-        public virtual ICollection<RequiredFacility> RequiredFacilities { get; set; }
+        public virtual Module Module { internal get; set; }
+        public virtual Round Round { internal get; set; }
     }
 }

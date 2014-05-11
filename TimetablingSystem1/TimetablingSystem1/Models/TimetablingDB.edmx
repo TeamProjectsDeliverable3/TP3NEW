@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="AllocatedRoomID" />
           </Key>
-          <Property Name="AllocatedRoomID" Type="int" Nullable="false" />
+          <Property Name="AllocatedRoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestID" Type="int" Nullable="false" />
           <Property Name="RoomID" Type="int" Nullable="false" />
         </EntityType>
@@ -20,6 +20,16 @@
           <Property Name="BuildingCode" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="ParkCode" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'team02.team02.Day' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Day">
+          <Key>
+            <PropertyRef Name="DayName" />
+            <PropertyRef Name="DayValue" />
+          </Key>
+          <Property Name="DayName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DayValue" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -37,6 +47,16 @@
           <Property Name="FacilityID" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'team02.team02.Length' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Length">
+          <Key>
+            <PropertyRef Name="LengthName" />
+            <PropertyRef Name="LengthValue" />
+          </Key>
+          <Property Name="LengthName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="LengthValue" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="ModuleCode" />
@@ -45,11 +65,21 @@
           <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="DepartmentCode" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'team02.team02.Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="PeriodName" />
+            <PropertyRef Name="PeriodValue" />
+          </Key>
+          <Property Name="PeriodName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="PeriodValue" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="PreferenceRoom">
           <Key>
             <PropertyRef Name="PreferenceRoomID" />
           </Key>
-          <Property Name="PreferenceRoomID" Type="int" Nullable="false" />
+          <Property Name="PreferenceRoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestID" Type="int" Nullable="false" />
           <Property Name="RoomID" Type="int" Nullable="false" />
         </EntityType>
@@ -57,7 +87,7 @@
           <Key>
             <PropertyRef Name="RequestID" />
           </Key>
-          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoundID" Type="int" Nullable="false" />
           <Property Name="ModuleCode" Type="char" MaxLength="6" Nullable="false" />
           <Property Name="Day" Type="tinyint" Nullable="false" />
@@ -76,15 +106,15 @@
           <Key>
             <PropertyRef Name="RequestWeekID" />
           </Key>
-          <Property Name="RequestWeekID" Type="int" Nullable="false" />
+          <Property Name="RequestWeekID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestID" Type="int" Nullable="false" />
-          <Property Name="Week" Type="tinyint" Nullable="false" />
+          <Property Name="Week" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RequiredFacility">
           <Key>
             <PropertyRef Name="RequiredFacilityID" />
           </Key>
-          <Property Name="RequiredFacilityID" Type="int" Nullable="false" />
+          <Property Name="RequiredFacilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestID" Type="int" Nullable="false" />
           <Property Name="FacilityID" Type="int" Nullable="false" />
         </EntityType>
@@ -92,7 +122,7 @@
           <Key>
             <PropertyRef Name="RoomID" />
           </Key>
-          <Property Name="RoomID" Type="int" Nullable="false" />
+          <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BuildingCode" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="RoomType" Type="char" MaxLength="1" Nullable="false" />
@@ -103,7 +133,7 @@
           <Key>
             <PropertyRef Name="RoomFacilityID" />
           </Key>
-          <Property Name="RoomFacilityID" Type="int" Nullable="false" />
+          <Property Name="RoomFacilityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoomID" Type="int" Nullable="false" />
           <Property Name="FacilityID" Type="int" Nullable="false" />
         </EntityType>
@@ -111,7 +141,7 @@
           <Key>
             <PropertyRef Name="RoundID" />
           </Key>
-          <Property Name="RoundID" Type="int" Nullable="false" />
+          <Property Name="RoundID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SemesterID" Type="int" Nullable="false" />
           <Property Name="RoundCode" Type="char" MaxLength="1" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
@@ -126,17 +156,6 @@
           <Property Name="SemesterNo" Type="tinyint" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'team02.team02.Table_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Table_1">
-          <Property Name="test" Type="nchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TestLogin">
-          <Property Name="Username" Type="nchar" MaxLength="10" />
-          <Property Name="Password" Type="nchar" MaxLength="10" />
-        </EntityType>-->
         <Association Name="FK_AllocatedRoom_Request">
           <End Role="Request" Type="Self.Request" Multiplicity="1" />
           <End Role="AllocatedRoom" Type="Self.AllocatedRoom" Multiplicity="*" />
@@ -319,6 +338,24 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <EntitySet Name="RoomFacility" EntityType="Self.RoomFacility" Schema="team02" store:Type="Tables" />
           <EntitySet Name="Round" EntityType="Self.Round" Schema="team02" store:Type="Tables" />
           <EntitySet Name="Semester" EntityType="Self.Semester" Schema="team02" store:Type="Tables" />
+          <EntitySet Name="Day" EntityType="Self.Day" store:Type="Tables" store:Schema="team02">
+            <DefiningQuery>SELECT 
+    [Day].[DayName] AS [DayName], 
+    [Day].[DayValue] AS [DayValue]
+    FROM [team02].[Day] AS [Day]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Length" EntityType="Self.Length" store:Type="Tables" store:Schema="team02">
+            <DefiningQuery>SELECT 
+    [Length].[LengthName] AS [LengthName], 
+    [Length].[LengthValue] AS [LengthValue]
+    FROM [team02].[Length] AS [Length]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Period" EntityType="Self.Period" store:Type="Tables" store:Schema="team02">
+            <DefiningQuery>SELECT 
+    [Period].[PeriodName] AS [PeriodName], 
+    [Period].[PeriodValue] AS [PeriodValue]
+    FROM [team02].[Period] AS [Period]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AllocatedRoom_Request" Association="Self.FK_AllocatedRoom_Request">
             <End Role="Request" EntitySet="Request" />
             <End Role="AllocatedRoom" EntitySet="AllocatedRoom" />
@@ -394,6 +431,9 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <EntitySet Name="RoomFacilities" EntityType="TimetablingModel.RoomFacility" />
           <EntitySet Name="Rounds" EntityType="TimetablingModel.Round" />
           <EntitySet Name="Semesters" EntityType="TimetablingModel.Semester" />
+          <EntitySet Name="Days" EntityType="TimetablingModel.Day" />
+          <EntitySet Name="Lengths" EntityType="TimetablingModel.Length" />
+          <EntitySet Name="Periods" EntityType="TimetablingModel.Period" />
           <AssociationSet Name="FK_AllocatedRoom_Request" Association="TimetablingModel.FK_AllocatedRoom_Request">
             <End Role="Request" EntitySet="Requests" />
             <End Role="AllocatedRoom" EntitySet="AllocatedRooms" />
@@ -455,10 +495,10 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Key>
             <PropertyRef Name="AllocatedRoomID" />
           </Key>
-          <Property Name="AllocatedRoomID" Type="Int32" Nullable="false" />
+          <Property Name="AllocatedRoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestID" Type="Int32" Nullable="false" />
           <Property Name="RoomID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_AllocatedRoom_Request" FromRole="AllocatedRoom" ToRole="Request" />
+          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_AllocatedRoom_Request" FromRole="AllocatedRoom" ToRole="Request" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <NavigationProperty Name="Room" Relationship="TimetablingModel.FK_AllocatedRoom_Room" FromRole="AllocatedRoom" ToRole="Room" />
         </EntityType>
         <EntityType Name="Building">
@@ -468,7 +508,6 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Property Name="BuildingCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="ParkCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Rooms" Relationship="TimetablingModel.FK_Room_Building" FromRole="Building" ToRole="Room" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -478,7 +517,6 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="false" />
           <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="13" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Modules" Relationship="TimetablingModel.FK_Module_Department" FromRole="Department" ToRole="Module" />
         </EntityType>
         <EntityType Name="Facility">
           <Key>
@@ -487,7 +525,6 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Property Name="FacilityID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RequiredFacilities" Relationship="TimetablingModel.FK_RequiredFacility_Facility" FromRole="Facility" ToRole="RequiredFacility" />
-          <NavigationProperty Name="RoomFacilities" Relationship="TimetablingModel.FK_RoomFacility_Facility" FromRole="Facility" ToRole="RoomFacility" />
         </EntityType>
         <EntityType Name="Module">
           <Key>
@@ -496,24 +533,23 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Department" Relationship="TimetablingModel.FK_Module_Department" FromRole="Module" ToRole="Department" />
-          <NavigationProperty Name="Requests" Relationship="TimetablingModel.FK_Request_Request" FromRole="Module" ToRole="Request" />
+          <NavigationProperty Name="Department" Relationship="TimetablingModel.FK_Module_Department" FromRole="Module" ToRole="Department" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="PreferenceRoom">
           <Key>
             <PropertyRef Name="PreferenceRoomID" />
           </Key>
-          <Property Name="PreferenceRoomID" Type="Int32" Nullable="false" />
+          <Property Name="PreferenceRoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestID" Type="Int32" Nullable="false" />
           <Property Name="RoomID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_PreferenceRoom_Request" FromRole="PreferenceRoom" ToRole="Request" />
-          <NavigationProperty Name="Room" Relationship="TimetablingModel.FK_PreferenceRoom_Room" FromRole="PreferenceRoom" ToRole="Room" />
+          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_PreferenceRoom_Request" FromRole="PreferenceRoom" ToRole="Request" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Room" Relationship="TimetablingModel.FK_PreferenceRoom_Room" FromRole="PreferenceRoom" ToRole="Room" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
             <PropertyRef Name="RequestID" />
           </Key>
-          <Property Name="RequestID" Type="Int32" Nullable="false" />
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoundID" Type="Int32" Nullable="false" />
           <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="Day" Type="Byte" Nullable="false" />
@@ -527,68 +563,61 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Property Name="ParkCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Priority" Type="Byte" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="AllocatedRooms" Relationship="TimetablingModel.FK_AllocatedRoom_Request" FromRole="Request" ToRole="AllocatedRoom" />
-          <NavigationProperty Name="Module" Relationship="TimetablingModel.FK_Request_Request" FromRole="Request" ToRole="Module" />
-          <NavigationProperty Name="PreferenceRooms" Relationship="TimetablingModel.FK_PreferenceRoom_Request" FromRole="Request" ToRole="PreferenceRoom" />
-          <NavigationProperty Name="Round" Relationship="TimetablingModel.FK_Request_Round" FromRole="Request" ToRole="Round" />
-          <NavigationProperty Name="RequestWeeks" Relationship="TimetablingModel.FK_RequestWeek_Request" FromRole="Request" ToRole="RequestWeek" />
-          <NavigationProperty Name="RequiredFacilities" Relationship="TimetablingModel.FK_RequiredFacility_Request2" FromRole="Request" ToRole="RequiredFacility" />
+          <NavigationProperty Name="Module" Relationship="TimetablingModel.FK_Request_Request" FromRole="Request" ToRole="Module" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Round" Relationship="TimetablingModel.FK_Request_Round" FromRole="Request" ToRole="Round" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="RequestWeek">
           <Key>
             <PropertyRef Name="RequestWeekID" />
           </Key>
-          <Property Name="RequestWeekID" Type="Int32" Nullable="false" />
+          <Property Name="RequestWeekID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestID" Type="Int32" Nullable="false" />
-          <Property Name="Week" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_RequestWeek_Request" FromRole="RequestWeek" ToRole="Request" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_RequestWeek_Request" FromRole="RequestWeek" ToRole="Request" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="RequiredFacility">
           <Key>
             <PropertyRef Name="RequiredFacilityID" />
           </Key>
-          <Property Name="RequiredFacilityID" Type="Int32" Nullable="false" />
+          <Property Name="RequiredFacilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestID" Type="Int32" Nullable="false" />
           <Property Name="FacilityID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Facility" Relationship="TimetablingModel.FK_RequiredFacility_Facility" FromRole="RequiredFacility" ToRole="Facility" />
-          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_RequiredFacility_Request2" FromRole="RequiredFacility" ToRole="Request" />
+          <NavigationProperty Name="Request" Relationship="TimetablingModel.FK_RequiredFacility_Request2" FromRole="RequiredFacility" ToRole="Request" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
             <PropertyRef Name="RoomID" />
           </Key>
-          <Property Name="RoomID" Type="Int32" Nullable="false" />
+          <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BuildingCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RoomType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="SeatingType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Capacity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AllocatedRooms" Relationship="TimetablingModel.FK_AllocatedRoom_Room" FromRole="Room" ToRole="AllocatedRoom" />
-          <NavigationProperty Name="Building" Relationship="TimetablingModel.FK_Room_Building" FromRole="Room" ToRole="Building" />
-          <NavigationProperty Name="PreferenceRooms" Relationship="TimetablingModel.FK_PreferenceRoom_Room" FromRole="Room" ToRole="PreferenceRoom" />
-          <NavigationProperty Name="RoomFacilities" Relationship="TimetablingModel.FK_RoomFacility_Room" FromRole="Room" ToRole="RoomFacility" />
+          <NavigationProperty Name="Building" Relationship="TimetablingModel.FK_Room_Building" FromRole="Room" ToRole="Building" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="RoomFacility">
           <Key>
             <PropertyRef Name="RoomFacilityID" />
           </Key>
-          <Property Name="RoomFacilityID" Type="Int32" Nullable="false" />
+          <Property Name="RoomFacilityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoomID" Type="Int32" Nullable="false" />
           <Property Name="FacilityID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Facility" Relationship="TimetablingModel.FK_RoomFacility_Facility" FromRole="RoomFacility" ToRole="Facility" />
-          <NavigationProperty Name="Room" Relationship="TimetablingModel.FK_RoomFacility_Room" FromRole="RoomFacility" ToRole="Room" />
+          <NavigationProperty Name="Facility" Relationship="TimetablingModel.FK_RoomFacility_Facility" FromRole="RoomFacility" ToRole="Facility" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <NavigationProperty Name="Room" Relationship="TimetablingModel.FK_RoomFacility_Room" FromRole="RoomFacility" ToRole="Room" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Round">
           <Key>
             <PropertyRef Name="RoundID" />
           </Key>
-          <Property Name="RoundID" Type="Int32" Nullable="false" />
+          <Property Name="RoundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SemesterID" Type="Int32" Nullable="false" />
           <Property Name="RoundCode" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Requests" Relationship="TimetablingModel.FK_Request_Round" FromRole="Round" ToRole="Request" />
-          <NavigationProperty Name="Semester" Relationship="TimetablingModel.FK_Round_Semester" FromRole="Round" ToRole="Semester" />
+          <NavigationProperty Name="Semester" Relationship="TimetablingModel.FK_Round_Semester" FromRole="Round" ToRole="Semester" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="Semester">
           <Key>
@@ -598,7 +627,30 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
           <Property Name="StartYear" Type="Int32" Nullable="false" />
           <Property Name="SemesterNo" Type="Byte" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Rounds" Relationship="TimetablingModel.FK_Round_Semester" FromRole="Semester" ToRole="Round" />
+        </EntityType>
+        <EntityType Name="Day">
+          <Key>
+            <PropertyRef Name="DayName" />
+            <PropertyRef Name="DayValue" />
+          </Key>
+          <Property Name="DayName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DayValue" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Length">
+          <Key>
+            <PropertyRef Name="LengthName" />
+            <PropertyRef Name="LengthValue" />
+          </Key>
+          <Property Name="LengthName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LengthValue" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Period">
+          <Key>
+            <PropertyRef Name="PeriodName" />
+            <PropertyRef Name="PeriodValue" />
+          </Key>
+          <Property Name="PeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PeriodValue" Type="Byte" Nullable="false" />
         </EntityType>
         <Association Name="FK_AllocatedRoom_Request">
           <End Type="TimetablingModel.Request" Role="Request" Multiplicity="1" />
@@ -905,6 +957,30 @@ warning 6013: The table/view 'team02.team02.TestLogin' does not have a primary k
                 <ScalarProperty Name="SemesterNo" ColumnName="SemesterNo" />
                 <ScalarProperty Name="StartYear" ColumnName="StartYear" />
                 <ScalarProperty Name="SemesterID" ColumnName="SemesterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Days">
+            <EntityTypeMapping TypeName="TimetablingModel.Day">
+              <MappingFragment StoreEntitySet="Day">
+                <ScalarProperty Name="DayValue" ColumnName="DayValue" />
+                <ScalarProperty Name="DayName" ColumnName="DayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lengths">
+            <EntityTypeMapping TypeName="TimetablingModel.Length">
+              <MappingFragment StoreEntitySet="Length">
+                <ScalarProperty Name="LengthValue" ColumnName="LengthValue" />
+                <ScalarProperty Name="LengthName" ColumnName="LengthName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periods">
+            <EntityTypeMapping TypeName="TimetablingModel.Period">
+              <MappingFragment StoreEntitySet="Period">
+                <ScalarProperty Name="PeriodValue" ColumnName="PeriodValue" />
+                <ScalarProperty Name="PeriodName" ColumnName="PeriodName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
