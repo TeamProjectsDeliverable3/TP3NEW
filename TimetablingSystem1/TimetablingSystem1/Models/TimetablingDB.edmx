@@ -532,7 +532,7 @@ warning 6002: The table/view 'team02.team02.Period' does not have a primary key 
           </Key>
           <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <NavigationProperty Name="Department" Relationship="TimetablingModel.FK_Module_Department" FromRole="Module" ToRole="Department" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </EntityType>
         <EntityType Name="PreferenceRoom">

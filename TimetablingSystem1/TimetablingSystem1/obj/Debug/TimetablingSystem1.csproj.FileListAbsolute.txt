@@ -28,3 +28,18 @@ C:\Users\melanie\Desktop\TimetablingSystem1\TimetablingSystem1 - add request cre
 C:\Users\melanie\Desktop\TimetablingSystem1\TimetablingSystem1 - add request created\TimetablingSystem1\obj\Debug\TimetablingSystem1.csprojResolveAssemblyReference.cache
 C:\Users\melanie\Desktop\TimetablingSystem1\TimetablingSystem1 - add request created\TimetablingSystem1\obj\Debug\TimetablingSystem1.dll
 C:\Users\melanie\Desktop\TimetablingSystem1\TimetablingSystem1 - add request created\TimetablingSystem1\obj\Debug\TimetablingSystem1.pdb
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\TimetablingSystem1.dll.config
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\TimetablingSystem1.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\TimetablingSystem1.pdb
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\Antlr3.Runtime.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\EntityFramework.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\EntityFramework.SqlServer.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\System.Web.Optimization.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\WebGrease.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\Antlr3.Runtime.pdb
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\EntityFramework.xml
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\EntityFramework.SqlServer.xml
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\bin\System.Web.Optimization.xml
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\obj\Debug\TimetablingSystem1.csprojResolveAssemblyReference.cache
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\obj\Debug\TimetablingSystem1.dll
+C:\Users\melanie\Documents\GitHub\TP3NEW\TimetablingSystem1\TimetablingSystem1\obj\Debug\TimetablingSystem1.pdb

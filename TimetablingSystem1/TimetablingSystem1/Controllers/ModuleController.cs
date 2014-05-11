@@ -56,15 +56,15 @@ namespace TimetablingSystem1.Controllers
         // GET: /Module/Edit/5
 
         [HttpGet]
-        public ActionResult Edit(string id = "")
+        public ActionResult Edit(string id)
         {
-            ModuleModel mod = new ModuleModel();
-            mod.modulesEdit = db.Modules.Find(id);
+            ModuleModel model = new ModuleModel();
+            model.modulesEdit = db.Modules.Find(id);
             if (id == null)
             {
                 return HttpNotFound();
             }
-            return View(mod);
+            return View(model);
         }
 
         // POST: /Module/Edit/5
@@ -73,13 +73,11 @@ namespace TimetablingSystem1.Controllers
         public ActionResult Edit(ModuleModel model)
         {
             Module mod = new Module();
-            mod.ModuleCode = model.ModuleCode;
-            mod.Title = model.Title;
-            mod.DepartmentCode = model.DepartmentCode;
+            mod = model.modulesEdit;
 
             if (ModelState.IsValid)
             {
-                db.Entry(mod).State = EntityState.Modified; ;
+                db.Entry(model.modulesEdit).State = EntityState.Modified; ;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -18,7 +18,7 @@ namespace TimetablingSystem1.Models
 
         public Department department { get; set; }
 
-        [DataType(DataType.Text)]
+       /* [DataType(DataType.Text)]
         [Required(ErrorMessage = "Department Code is required")]
         [StringLength(2, ErrorMessage = "Department Code should be 2 characters.", MinimumLength = 2)]
         public string DepartmentCode { get; set; }
@@ -31,7 +31,7 @@ namespace TimetablingSystem1.Models
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Title is required")]
         [StringLength(200, ErrorMessage = "Title is too long, please make it shorter.", MinimumLength = 10)]
-        public string Title { get; set; }
+        public string Title { get; set; } */
 
 
 
