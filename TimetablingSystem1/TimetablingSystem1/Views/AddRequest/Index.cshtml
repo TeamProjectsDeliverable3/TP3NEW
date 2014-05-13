@@ -1,0 +1,621 @@
+﻿@model TimetablingSystem1.Models.AddRequestModel
+
+@{
+    ViewBag.Title = "Add Request";
+}
+<script type="text/javascript">
+    var facArray = new Array();
+    $(document).ready(function () {
+
+        
+
+        appendDuration(1); //on page load, selected period set as 1st period
+        select12weeks(); //12 weeks selected on start up
+        checkPriority();
+        appendPreferenceRoom(1);
+        getRoomData();
+      
+
+    });
+
+    var roomData = [];
+    var filterData = [];
+    var roomArray = [];
+    var roomType = "";
+    var seatingType = "";
+    var capacity = "";
+    var parkCode = "";
+    var noOfRooms = "";
+    var buildingCode = "";
+
+    
+    
+
+    function getRoomData() {
+
+     
+
+        $("#roomPref-1").empty();
+        $("#roomPref-2").empty();
+        $("#roomPref-3").empty();
+        $("#roomPref-4").empty();
+        $("#roomPref-5").empty();
+           
+
+        facArray = [];
+
+        $(".checkBoxFac").each(function () {
+            if ($(this).prop("checked")) {
+
+                facArray.push($(this).attr('id'));
+               
+            }
+        });
+
+        
+
+        if (document.getElementById("L").checked) {
+            roomType = "";
+            roomType = "L";
+        }
+        if (document.getElementById("S").checked) {
+            roomType = "";
+            roomType = "S";
+        }
+        if (document.getElementById("T").checked) {
+            seatingType = "";
+            seatingType = "T";
+        }
+        if (document.getElementById("F").checked) {
+            seatingType = "";
+            seatingType = "F";
+        }
+        capacity = document.getElementById("noOfStudents").value
+        parkCode = document.getElementById("parkSelect").options[document.getElementById('parkSelect').selectedIndex].value
+        noOfRooms = document.getElementById('roomSelect').options[document.getElementById('roomSelect').selectedIndex].value
+        appendPreferenceRoom(noOfRooms);
+
+        
+        //alert(noOfRooms);
+
+        
+
+       
+
+        $.getJSON("@Url.Action("RoomAPI", "api", null, Request.Url.Scheme)" + '?FacilityIDString=' + JSON.stringify(facArray) + '&ParkCode='
+            + parkCode + '&BuildingCode' + buildingCode + '&SeatingType=' + seatingType + '&RoomType=' + roomType + '&Capacity=' + capacity)
+        .done(function (data) {
+            console.log(data);
+
+            
+
+            
+         //   var select2 = document.getElementById("roomPref-2");
+            
+         
+
+                data.forEach(function (entry) {
+           
+                    for (var i = 1; i <= noOfRooms; i++) {
+
+                  
+                        var select = document.getElementById("roomPref-"+i);
+                        var option = document.createElement("option");
+                        option.text = entry.Name;
+                        option.value = entry.RoomID;
+                        select.add(option);
+
+
+                   }
+
+                });
+            
+        })
+
+        .fail(function (jqXHR, textStatus, err) {
+            console.log('Error: ' + err);
+        });
+    }
+
+    function appendDuration(periodNo) {
+
+        $("#lengthData").empty() //length dropdown emptied everytime new period is selected
+
+        var lengthOpts;
+
+        for (var i = 1; i < (11 - periodNo) ; i++) { 
+
+            lengthOpts += "<option id='length' value=' " + i + " ' >" + i + " Hours </option>" 
+        
+        };
+
+        $("#lengthData").append(lengthOpts) //adjusts the length of request depending on period selected
+
+    }
+
+    function select12weeks() {
+
+        
+
+        for (var i = 1; i < 13; i++) {
+
+            document.getElementById("week-" + i).checked = true
+            document.getElementById('week-' + i).value = 1
+                
+
+        }
+
+        for (var j = 13; j < 16; j++) {
+
+            document.getElementById("week-" + j).checked = false
+            document.getElementById('week-' + j).value = 0
+
+
+        }
+        
+
+    }
+
+    function selectAll() {
+
+       
+
+        for (var i = 1; i < 16; i++) {
+
+            document.getElementById("week-" + i).checked = true
+            document.getElementById('week-'+i).value = 1
+
+        }
+
+        
+    }
+
+    function deselectAll() {
+
+       
+
+        for (var i = 1; i < 16; i++) {
+
+            document.getElementById("week-" + i).checked = false
+            document.getElementById('week-'+i).value = 0
+
+        }
+
+       
+    }
+
+    function checkForm() {
+
+        for (var i=1; i <16; i++){
+            
+            if(document.getElementById("week-" + i).checked){
+                    
+                document.getElementById('week-'+i).value = 1
+            
+            }
+            else{
+            
+                document.getElementById('week-'+i).value = 0
+            
+            }
+        
+        }
+
+    }
+
+    function checkWeeks() {
+
+        for (var i = 1; i < 16; i++) {
+
+           if (document.getElementById("week-" + i).value == "1")
+               return false;
+
+        }
+
+        return true;
+
+    }
+
+   
+
+    function checkFacilities(noFacs) {
+
+       
+
+        for (var i = 1; i < noFacs; i++) {
+
+            if (document.getElementById(i).checked) {
+
+                document.getElementById(i).value = 1
+
+            }
+            else {
+
+                document.getElementById(i).value = 0
+
+            }
+
+        }
+            
+      }
+
+
+ 
+
+    
+
+    function checkPriority() {
+
+        if (document.getElementById("priorityCheck").checked) {
+
+            document.getElementById("priorityCheck").value = 1
+
+        }
+        else {
+
+            document.getElementById("priorityCheck").value = 0
+
+        } 
+
+
+    }
+
+    function checkSeating() {
+        var r = document.getElementsByName("seatingType")
+        var c = -1
+
+        for (var i = 0; i < r.length; i++) {
+            if (r[i].checked) {
+                c = i;
+            }
+        }
+        if (c == -1) return true;
+    }
+
+    function checkRoomType() {
+        var r = document.getElementsByName("roomType")
+        var c = -1
+
+        for (var i = 0; i < r.length; i++) {
+            if (r[i].checked) {
+                c = i;
+            }
+        }
+        if (c == -1) return true;
+    }
+
+   
+
+    
+
+    function appendPreferenceRoom(noOfRooms) {
+
+        $("#prefData").empty()
+        var dropdowns = "";
+        //var j = (noOfRooms + 1);
+
+        for (var i = 1; i <= noOfRooms ; i++) {
+
+
+            dropdowns += "Room preference " + i + "<select name='roomPref-"+i+"' id='roomPref-" + i + "'></select></br>"
+
+
+
+        };
+
+        $("#prefData").append(dropdowns)
+
+
+    }
+
+    function checkPrefereneRooms() {
+
+        noOfRooms = document.getElementById('roomSelect').options[document.getElementById('roomSelect').selectedIndex].value
+        
+        if (noOfRooms > 1) {
+
+            for (var i = 1; i < noOfRooms; i++) {
+
+                var list1 = document.getElementById('roomPref-' + i).options[document.getElementById('roomPref-'+i).selectedIndex].value
+
+                for (var j = 2; j <= noOfRooms; j++) {
+
+                    if(i != j){
+
+                        var list2 = document.getElementById('roomPref-' + j).options[document.getElementById('roomPref-' + j).selectedIndex].value
+                    
+                        if (list1 == list2) {
+
+                            return true;
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+        return false;
+    }
+    //Weeks
+    //roomType
+    //seatingType
+    //noOfStudents
+    //parkSelect
+
+    function validateForm() {
+
+     
+        var noStudents = document.forms["myForm"]["noOfStudents"].value;
+
+      
+
+        if (checkWeeks()) {
+            $("#weekV").empty();
+            $("#weekV").append("* Select at least one week");
+            return false
+        }
+
+        if (noStudents < 1 || noStudents > 400 || noStudents == "" || noStudents == null || isNaN(noStudents) ) {
+
+            $("#studentV").empty();
+            $("#studentV").append("* Please enter a number between 1 and 400");
+            return false
+
+        }
+
+        if (checkRoomType()) {
+
+            $("#roomV").empty();
+            $("#roomV").append("* Please select a room type");
+            return false;
+
+        }
+
+        if (checkSeating()) {
+            $("#seatingV").empty();
+            $("#seatingV").append("* Please select a seating type");
+            return false;
+        }
+        if (checkPrefereneRooms()) {
+
+            $("#prefV").empty();
+            $("#prefV").append("* Please select unique preference rooms");
+            return false;
+
+        }
+
+
+        
+
+    }
+
+</script>
+
+<h2>AddRequest</h2>
+<h3>@User.Identity.Name </h3>
+
+
+
+<form name="myForm" onsubmit="return validateForm(); " method="post">
+        
+
+
+  
+
+        <div>
+            Select Round and Semester <br/>
+            <select id="roundSelect" name="roundSelect" onchange="">
+
+                @{
+    foreach (var item in ViewBag.activeSemesters)
+    {
+        <option id="selectedRound" value="@item.Value">@item.Text</option>
+
+    }
+                }
+            </select>
+
+        </div>
+
+        <div>
+            Select Module <br/>
+            <select id="moduleSelect" name="moduleSelect" onchange="">
+
+                @{
+    foreach (var item in ViewBag.modules)
+    {
+        <option id="selectedModule" value="@item.Value">@item.Text</option>
+
+    }
+                }
+            </select>
+
+        </div>
+        <div>
+            Select Day <br/>
+            <select id="daySelect" name="daySelect" onchange="">
+
+                @{
+    foreach (var item in ViewBag.days)
+    {
+        <option id="selectedDay" value="@item.Value">@item.Text</option>
+
+    }
+                }
+            </select>
+
+        </div>
+
+
+
+        <div class="editor-field">
+            Select Period <br/>
+            <select id="periodSelect" name="periodSelect" onchange="appendDuration(document.getElementById('periodSelect').options[document.getElementById('periodSelect').selectedIndex].value)" onblur="checkForm()">
+
+
+                @{
+    foreach (var item in ViewBag.periods)
+    {
+        <option id="selectedperiod" value="@item.Value">@item.Text</option>
+
+    }
+                }
+            </select>
+
+         <br/>   Select Duration <br/>
+            <select id="lengthData" name="lengthData"></select>
+
+        </div>
+
+        <div>
+            Select Weeks <div id="weekV"></div>
+            @for (int i = 1; i < 16; i++)
+            {
+
+                <input type="checkbox" id="week-@i" name="week-@i" value="" onclick="checkWeeks();" onblur="checkForm()">@i //loops through to display weeks 1-15 checkboxs
+            }
+
+        </div>
+
+        <div id="test"></div>
+
+        <input type="button" onclick="select12weeks()"
+               value="Select Weeks 1-12" class="week-select-button" />
+
+
+        <input type="button" onclick="selectAll()"
+               value="Select All Weeks" class="week-select-button" />
+
+        <input type="button" onclick="deselectAll()"
+               value="Deselect All Weeks" class="week-select-button" />
+
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.requestsIndex.SpecialRequirements)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.requestsIndex.SpecialRequirements)
+            @Html.ValidationMessageFor(model => model.requestsIndex.SpecialRequirements)
+        </div>
+        <div>Room Requirements </div>
+
+
+
+        <div>
+            <select name="roomSelect" id="roomSelect" onchange="appendPreferenceRoom(document.getElementById('roomSelect').options[document.getElementById('roomSelect').selectedIndex].value); getRoomData();">
+
+                @foreach (var item in ViewBag.noOfRooms)
+                {
+                    string selected = "";
+                    if (item.Text == "1")
+                    {
+                        selected = "selected";
+                    }
+                    <option @selected value="@item.Value">@item.Text</option>
+
+
+                }
+            </select>
+        </div>
+
+        <div class="editor-label"> 
+            @Html.LabelFor(model => model.requestsIndex.NoOfStudents)
+        </div> <div id="studentV"></div>
+
+        <input type="text" id="noOfStudents" name="noOfStudents" onblur="getRoomData();">
+
+       <br />
+
+            @Html.LabelFor(model => model.requestsIndex.RoomType)
+      
+        <div id="roomV"></div>
+        
+            <input type="radio" name="roomType" id="L" value="L" onchange="getRoomData();">Lecture
+            <input type="radio" name="roomType" id="S" value="S" onchange="getRoomData();"/>Seminar
+        
+        <br />
+        @Html.LabelFor(model => model.requestsIndex.SeatingType)
+
+        <div id="seatingV"></div>
+
+            <input type="radio" name="seatingType" id="T" value="T" onchange="getRoomData();">Tiered
+            <input type="radio" name="seatingType" id="F" value="F" onchange="getRoomData();">Flat
+        
+
+
+
+
+        <div>
+            Preference Park <br/>
+            <select name="parkSelect" id="parkSelect" onchange="getRoomData()">
+
+               
+
+                @foreach (var item in ViewBag.parkCodes)
+                {
+                    <option value="@item.Value">@item.Text</option>
+
+                }
+            </select>
+        </div>
+
+        
+            Preference Facilities <br/>
+       
+             @foreach (var item in Model.facilities)
+             {
+
+                        
+        
+                @item.Name
+                <input type="checkbox" class="checkBoxFac" id="@item.FacilityID" name="fac-@item.FacilityID" value="" onclick="getRoomData(); checkFacilities(@ViewBag.noOfFacs);" />
+
+                
+                
+                
+                 if (item.FacilityID % 8 == 0){ <br/> }   
+                    
+
+             }
+
+
+
+
+        <div>Preference Room </div><div id="prefV"></div>
+
+        <div id="prefData"></div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.requestsIndex.Priority)
+        </div>
+        <div class="editor-field">
+            <input type="checkbox" id="priorityCheck" name="priorityCheck" value="" onclick="checkPriority()" onblur="checkPriority()" />
+
+        </div>
+
+
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.requestsIndex.Status)
+            @Html.ValidationMessageFor(model => model.requestsIndex.Status)
+        </div>
+
+
+        <input type="submit" value="submit">
+
+</form>
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+

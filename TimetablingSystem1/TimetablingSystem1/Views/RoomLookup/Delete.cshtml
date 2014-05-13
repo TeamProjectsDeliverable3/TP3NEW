@@ -1,0 +1,72 @@
+﻿@model TimetablingSystem1.Models.RoomLookupModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Room</legend>
+
+    @Html.HiddenFor(model => model.roomsDelete.RoomID)
+
+
+
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.roomsDelete.BuildingCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomsDelete.BuildingCode)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.roomsDelete.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomsDelete.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.roomsDelete.RoomType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomsDelete.RoomType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.roomsDelete.SeatingType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomsDelete.SeatingType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.roomsDelete.Capacity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.roomsDelete.Capacity)
+    </div>
+    <div class="display-label">
+        <p>Facilities available in this room:</p>
+    </div>
+    @foreach (var item in Model.roomfacView)
+    {
+
+        <p>@item.Name</p>
+    }
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        @Html.HiddenFor(model => model.roomsDelete.RoomID)
+
+
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+

@@ -1,0 +1,54 @@
+﻿@model TimetablingSystem1.Models.loginModel 
+@using System.Web.Optimization;
+
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<img src="http://co-project.lboro.ac.uk/cojb8/test/lboro.png" span style="    display: block;
+    margin-left: auto;
+    margin-right: auto;" height="80px">
+<h1 align="center">Loughborough Timetabling System</h1>
+<h2 align="center">Created by Team 02</h2>
+
+
+
+
+
+
+
+  <!-- <div class="form"> -->
+    
+    <div id="stafflogin">    Staff Login </div>
+        <br /> 
+
+    @using (Html.BeginForm())
+    {
+
+<div id="fields">
+   
+        @Html.LabelFor(model => model.DisplayDepartments, "Department Code:")
+   
+        @Html.DropDownList("DisplayDepartments", "Select")
+        @Html.ValidationMessageFor(model => model.DisplayDepartments)
+     
+        @Html.LabelFor(model => model.Password, "Password: ")
+        @Html.PasswordFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+        <p>@TempData["notice"]</p>
+        
+     </div>
+        <br />
+    <div id="loginbutton" >
+         <input type="submit" name="Submit" value="Login">
+    </div>
+        @Html.ValidationSummary()
+
+        
+    }
+
+    <p>@ViewBag.incorrectPassword</p>
+
+

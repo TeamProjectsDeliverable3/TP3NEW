@@ -1,0 +1,175 @@
+﻿@model List<TimetablingSystem1.Models.ViewRequestModel>
+@{
+    ViewBag.Title = "View Requests";
+}
+
+<h2>View Requests</h2>
+<style type="text/css">
+
+    table {
+        table-layout: fixed;
+    }
+
+    .A {
+        background-color: #99FF99;
+    }
+
+    .P {
+        background-color: #FFFF70;
+    }
+
+
+</style>
+<script>
+    $(document).ready(function () {
+
+
+
+    });
+
+    function statusDisplay() {
+
+
+    }
+
+    function deleteRequest(reqID) {
+
+        
+           
+      window.location.href = "@Url.Action("Delete", "ViewRequest", null, Request.Url.Scheme)" + '/' + reqID;
+            
+        
+
+    }
+
+    function viewDetails(requestId) {
+
+        var displayextrainfo = "";
+
+        $('#extraDetails-' + requestId).empty();
+
+        $.getJSON("@Url.Action("ViewRequestAPI", "api", null, Request.Url.Scheme)" + '?RequestID=' + requestId)
+        .done(function (data) {
+            console.log(data);
+
+            var pr = "none"
+            var pf = "none"
+            var sr = "none"
+            var per = ""
+            var len = ""
+
+            if (data.prefRooms != null) {
+                pr = data.prefRooms
+            }
+            if (data.prefFacs != null) {
+                pf = data.prefFacs
+            }
+            if (data.specialRequirements != null) {
+                sr = data.specialRequirements
+            }
+            if (data.period != null) {
+                per = data.period
+            }
+            if (data.length != null) {
+                len = data.length
+            }
+
+
+
+            displayextrainfo += "<td><b> Preference Rooms: </b>" + pr + ", " + "<br/>"
+            displayextrainfo += "<b> Preference Facilities: </b>" + pf + "<br/>"
+            displayextrainfo += "<b> Special Requirements: </b>" + sr + "<br/>"
+            displayextrainfo += "<b> Period: </b>" + per + "<br/>"
+            displayextrainfo += "<b> Length: </b>" + len + "<br/>"
+            displayextrainfo += "<input type='button' value='Edit Request'/><input type='button' value='Make Similar Request' />"
+            displayextrainfo += "<input type='button' value='Delete Request' onclick='deleteRequest("+requestId+")'/>"
+       
+       
+
+            $("#extraDetails-" + requestId).append(displayextrainfo);
+
+        })
+
+
+
+
+
+
+        .fail(function (jqXHR, textStatus, err) {
+            console.log('Error: ' + err);
+        });
+
+    };
+
+    function expand(reqId) {
+
+        var collapse = "<input type='button' onclick='collapse(" + reqId + ");'  value='-'/>";
+
+        $("#expandRow-" + reqId).empty();
+
+        $("#expandRow-" + reqId).append(collapse);
+
+
+    };
+
+    function collapse(reqId) {
+
+        $("#extraDetails-" + reqId).empty();
+
+        var expand = "<input type='button' onclick='viewDetails(" + reqId + "); expand(" + reqId + ");'  value='+'/>";
+
+        $("#expandRow-" + reqId).empty();
+
+        $("#expandRow-" + reqId).append(expand);
+
+
+    };
+
+
+</script>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Filter by Module Code or Title: @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    </p>
+    
+    
+}
+
+<table>
+    <tr>
+        <td>@Html.ActionLink("Module Code", "Index", new { sortOrder = ViewBag.CodeSortParm })</td>
+        <td>@Html.ActionLink("Module Title", "Index", new { sortOrder = ViewBag.TitleSortParm })</td>
+       <td>@Html.ActionLink("Days", "Index", new { sortOrder = ViewBag.DaySortParm })</td>
+        <td>@Html.ActionLink("Start Time", "Index", new { sortOrder = ViewBag.StartSortParm })</td>
+        <td>@Html.ActionLink("End Time", "Index", new { sortOrder = ViewBag.EndSortParm })</td>
+        <td>Weeks</td>
+        <td>Number of Rooms</td> 
+        <td>Priority</td>
+        <td>Status</td>
+       
+    </tr>
+    @foreach (var item in Model) { 
+    
+     <tr class="@item.statusCode">
+         <td style="display:none;"> @item.daysint </td>
+       <td>@item.moduleCode </td>
+       <td>@item.moduleTitle </td>
+        <td> @item.days</td>        
+        <td>@item.startTime</td>
+         <td>@item.endTime</td>
+         <td>@item.weeks</td>
+         <td>@item.numberOfRooms</td>
+         <td>@item.priority</td>
+         <td>@item.status</td>
+         <td>@Html.ActionLink("Delete", "Delete", new { id = item.requestID })</td>
+        
+         <td id="expandRow-@item.requestID"><input type="button" onclick="viewDetails(@item.requestID); expand(@item.requestID);"  value="+"/></td>
+    </tr>
+    <tr id="extraDetails-@item.requestID"></tr>
+        
+    
+    }
+</table>
